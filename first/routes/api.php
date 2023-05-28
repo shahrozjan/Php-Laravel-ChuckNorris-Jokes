@@ -17,3 +17,14 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get('/data', function () {
+    return response()->json([        'message' => 'Hello, world!'    ]);
+});
+
+Route::get('/get-json', function () {
+    $url = 'https://api.chucknorris.io/jokes/random'; // Change the URL to the actual URL that returns the JSON data
+    $response = file_get_contents($url);
+    $data = json_decode($response, true);
+
+    return response()->json($data);
+});
